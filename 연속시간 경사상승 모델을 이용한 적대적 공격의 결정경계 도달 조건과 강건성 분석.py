@@ -120,7 +120,7 @@ print(f"경계 도달점 = ({X_STAR[0]:.6f}, {X_STAR[1]:.6f})")
 print(f"최소 교란량 = {EPS_MIN:.6f}")
 print(f"z(0.5) = {EXACT_Z_AT_HALF:.6f}")
 print(f"p(0.5) = {EXACT_P_AT_HALF:.6f}")
-print("\n[표 1: 오일러 방법과 음함수 해의 비교]")
+print("\n[Table. 2: 오일러 방법과 음함수 해의 비교]")
 print("   h       오일러 z(0.5)     절댓값 오차")
 
 TABLE_1 = []
@@ -134,7 +134,7 @@ for h in EULER_STEPS:
 # <3> Table. 3 (가중치, 편향 배율에 따른 강건성 비교)
 SCALES = [0.5, 1.0, 2.0, 4.0]
 TABLE_2 = []
-print("\n[표 2: 가중치·편향 배율 비교]")
+print("\n[Table. 3: 가중치·편향 배율 비교]")
 print("  c       초기 예측 확률      t*(c)       최소 L2 교란량")
 for c in SCALES:
     initial_probability = float(sigmoid(c * Z0))
@@ -156,7 +156,7 @@ x1 = np.linspace(0.10, 1.30, 300)
 # w1*x1 + w2*x2 + b = 0  ->  x2 = (-b-w1*x1)/w2
 boundary_x2 = (-B - W[0] * x1) / W[1]
 ax.plot(x1, boundary_x2, "--", color=COLOR_BOUNDARY, linewidth=1.8,
-        label=label("결정경계 (2x₁ + x₂ - 1 = 0)",
+        label=label(r"결정경계 ($2x_1 + x_2 - 1 = 0$)",
                                           "Decision boundary"))
 
 t_grid = np.linspace(0.0, 1.05, 180)
@@ -172,8 +172,8 @@ ax.annotate(label("경계 도달 (0.6, -0.2)", "Boundary (0.6, -0.2)"),
             xy=X_STAR, xytext=(10, -28), textcoords="offset points")
 ax.set_xlim(0.15, 1.30)
 ax.set_ylim(-0.65, 0.65)
-ax.set_xlabel(label("정규화된 특징 x₁", "Normalized feature x1"))
-ax.set_ylabel(label("정규화된 특징 x₂", "Normalized feature x2"))
+ax.set_xlabel(label(r"정규화된 특징 $x_1$", "Normalized feature x1"))
+ax.set_ylabel(label(r"정규화된 특징 $x_2$", "Normalized feature x2"))
 ax.grid(alpha=0.22)
 ax.legend(loc="upper right", fontsize=9)
 fig.tight_layout()
@@ -219,7 +219,7 @@ c_grid = np.linspace(0.30, 4.50, 500)
 ax.plot(c_grid, boundary_time_scaled(c_grid), color=COLOR_BLUE, linewidth=2.2,
         label=label("결정경계 도달 매개변수 t*", "Boundary time t*"))
 ax.scatter(SCALES, boundary_time_scaled(np.array(SCALES)), color=COLOR_RED, s=50,
-           label=label("표 2의 실험값", "Table 2 values"), zorder=3)
+           label=label("Table. 3의 실험값", "Table 2 values"), zorder=3)
 ax.axvline(C_MIN, color=COLOR_BOUNDARY, linestyle=":", linewidth=1.0, alpha=0.7)
 ax.set_xlim(0.3, 4.5)
 ax.set_xlabel(label("가중치·편향 배율 c", "Weight/bias multiplier c"))
